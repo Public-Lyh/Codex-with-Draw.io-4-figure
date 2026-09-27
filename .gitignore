@@ -1,0 +1,15 @@
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+config.json
+.codex-drawio-install.json
+*.backup-*/
+diagrams/out/
+test-output/
+*.log
+*.docx
+.DS_Store
+Thumbs.db
+.env
+*.zip

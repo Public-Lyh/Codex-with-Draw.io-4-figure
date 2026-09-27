@@ -1,0 +1,42 @@
+name: Real Linux and macOS export
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+# Native Windows installation is documented for local verification. The code
+# checks workflow runs its unit tests and PowerShell parsing on Windows.
+jobs:
+  render:
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - os: ubuntu-latest
+            entry: linux.sh
+            extra: --no-sandbox
+          - os: macos-latest
+            entry: macos.sh
+            extra: ''
+    runs-on: ${{ matrix.os }}
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install workflow and export real figures
+        shell: bash
+        env:
+          WORKFLOW_ENTRY: ${{ matrix.entry }}
+          WORKFLOW_EXTRA: ${{ matrix.extra }}
+        run: |
+          bash "install/$WORKFLOW_ENTRY" --yes --agents none --prefix "$RUNNER_TEMP/figure-workflow" --skip-path $WORKFLOW_EXTRA
+      - name: Retain rendering output and logs
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: rendering-${{ runner.os }}
+          path: ${{ runner.temp }}/figure-workflow/test-output/
+          if-no-files-found: warn
