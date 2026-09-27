@@ -1,6 +1,6 @@
 # Codex-with-Draw.io-4-figure
 
-用自然语言描述论文图片，让 Codex、Claude Code 或 OpenCode 生成可编辑的 draw.io 源文件，再通过命令行导出 PNG、SVG 和 PDF。
+用自然语言描述绘图需求，让 Codex、Claude Code 或 OpenCode 等 Agent 根据需求生成可编辑的 draw.io 源文件，再通过命令行导出 PNG、SVG 和 PDF 等文件。
 
 本项目把一套服务器上的论文绘图工作流整理为可安装、可复用的工具。Agent 负责理解研究内容、编写与修改 XML；draw.io Desktop 负责渲染；Inkscape 默认负责将 SVG 转为 PDF，也可选择 CairoSVG。每位用户使用自己的系统账号和 Agent，无需创建专用 `codex` 账号。
 
