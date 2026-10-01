@@ -23,6 +23,8 @@ Read [layout.md](references/layout.md) for sizing, grouping, and XML conventions
 
 ## Render and inspect
 
+**You may skip the image check if the user requests it.**
+
 Run the command in the local installation reference, or these commands when it is available on PATH:
 
 ```bash
